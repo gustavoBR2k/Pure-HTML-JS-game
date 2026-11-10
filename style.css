@@ -1,0 +1,293 @@
+body{
+  margin:0;
+  overflow:hidden;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#050505;
+}
+
+canvas{
+  display:block;
+}
+
+/* ================= MENU ================= */
+
+#menu{
+  position:fixed;
+  inset:0;
+  z-index:10;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:#000;
+}
+
+/* caixa central */
+#menuBox{
+  box-sizing:border-box;
+  width:500px;
+  max-width:calc(100vw - 48px);
+  padding:34px 30px;
+  border-radius:0;
+  background-color:#0b0b0b;
+  border:2px solid #eee;
+  box-shadow:5px 5px 0 #444;
+  text-align:center;
+  color:white;
+  font-family:"Courier New", monospace;
+}
+
+/* títulos e detalhes em estilo pixel art */
+#menuBox .menu-kicker{
+  margin:0 0 12px;
+  color:#aaa;
+  font-size:13px;
+  font-weight:bold;
+  letter-spacing:3px;
+}
+
+#menuBox h1{
+  margin:0 0 30px;
+  color:#fff;
+  font-size:clamp(30px, 6vw, 42px);
+  letter-spacing:3px;
+  font-weight:700;
+  text-transform:uppercase;
+  text-shadow:none;
+}
+
+#menuBox h2{
+  margin:0 0 22px;
+  color:#fff;
+  font-size:22px;
+  text-transform:uppercase;
+}
+
+#menuBox p{
+  margin:0 0 20px;
+  color:#bdbdbd;
+  font-size:15px;
+}
+
+/* botões */
+#menuBox button{
+  width:100%;
+  padding:14px;
+  margin:10px 0;
+  border:1px solid #eee;
+  border-radius:0;
+  background:#151515;
+  color:#fff;
+  font-size:18px;
+  font-weight:bold;
+  letter-spacing:1px;
+  font-family:inherit;
+  text-transform:uppercase;
+  cursor:pointer;
+  box-shadow:3px 3px 0 #555;
+  transition:transform 0.08s, background-color 0.08s;
+}
+
+#menuBox button:hover{
+  transform:translate(-2px,-2px);
+  background:#292929;
+}
+
+#menuBox button:active{
+  transform:translate(3px,3px);
+  box-shadow:1px 1px 0 #555;
+}
+
+.player-name-form[hidden]{
+  display:none;
+}
+
+.player-name-form label{
+  display:block;
+  margin-bottom:8px;
+  color:#ddd;
+  text-align:left;
+  font-size:14px;
+}
+
+.player-name-form input{
+  box-sizing:border-box;
+  width:100%;
+  padding:12px;
+  border:1px solid #777;
+  border-radius:0;
+  outline:none;
+  background:#050505;
+  color:white;
+  font:18px "Courier New", monospace;
+}
+
+.player-name-form input:focus{
+  border-color:#fff;
+  box-shadow:2px 2px 0 #777;
+}
+
+.form-error{
+  margin:10px 0 0 !important;
+  color:#ddd !important;
+  font-size:13px !important;
+  text-align:left;
+}
+
+.menu-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:10px;
+}
+
+.menu-actions button{
+  margin-bottom:4px !important;
+}
+
+#menuBox.pixel-credits{
+  width:620px;
+  max-width:calc(100vw - 48px);
+  padding:30px 28px;
+}
+
+.pixel-credits__tag{
+  margin:0 0 10px !important;
+  color:#bbb !important;
+  font-size:13px !important;
+  font-weight:bold;
+  letter-spacing:4px;
+}
+
+#menuBox .pixel-credits__title{
+  margin:0 0 12px !important;
+}
+
+.pixel-credits__lead{
+  color:#ccc !important;
+  font-size:15px !important;
+}
+
+.pixel-credits__divider{
+  height:4px;
+  margin:20px auto;
+  background:repeating-linear-gradient(90deg, #ddd 0 12px, transparent 12px 18px);
+}
+
+#menuBox .pixel-credits__heading{
+  margin:0 0 14px;
+  color:#eee;
+  font-size:16px;
+  letter-spacing:2px;
+}
+
+.pixel-credits__names{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:10px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+.pixel-credits__names li{
+  padding:12px 8px;
+  border:1px solid #666;
+  background:#151515;
+  color:#eee;
+  font-size:14px;
+  font-weight:bold;
+}
+
+#menuBox.pixel-credits .pixel-credits__button{
+  width:auto;
+  min-width:210px;
+  margin-top:24px;
+}
+
+@media (max-width:560px){
+  #menuBox.pixel-credits{
+    padding:24px 18px;
+  }
+
+  .pixel-credits__names{
+    grid-template-columns:1fr;
+  }
+
+  .menu-actions{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ================= DIALOGO ================= */
+
+#dialogueBox{
+  position:absolute;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+
+  width:60%;
+  padding:15px 20px;
+
+  background:#050505;
+  color:white;
+
+  border-radius:0;
+  border:2px solid #ddd;
+
+  font-family:"Courier New", monospace;
+  display:none;
+  cursor:pointer;
+  user-select:none;
+  box-shadow:4px 4px 0 #444;
+}
+
+#dialogueBox::after{
+  content:"ENTER / E / CLIQUE PARA CONTINUAR";
+  display:block;
+  margin-top:10px;
+  color:#aaa;
+  font-size:11px;
+  text-align:right;
+}
+
+#challengeBox button:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+#challengeBox h2 {
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+#gameContainer {
+  /* Centraliza na tela */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: #000;          /* fundo preto ao redor */
+}
+
+#gameCanvas {
+  /* Mantém a proporção e escala com aspecto pixelado */
+  width: 100%;
+  height: auto;
+  max-width: 960px;
+  image-rendering: crisp-edges;   /* para pixel art */
+  image-rendering: pixelated;
+
+  /* Moldura retro (box simulando uma TV antiga) */
+  border: 8px solid #333;
+  box-shadow:
+    0 0 0 4px #111,
+    0 0 20px rgba(0,0,0,0.8);
+  border-radius: 12px;            /* cantos arredondados */
+}
+

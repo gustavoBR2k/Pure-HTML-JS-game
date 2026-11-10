@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+<title>The doors</title>
+<style>
+  body { margin: 0; overflow: hidden; }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+
+<!-- MENU INICIAL -->
+<div id="menu">
+  <div id="menuBox">
+      <div id="mainMenu">
+        <p class="menu-kicker">AVENTURA 2D</p>
+        <h1>The Doors</h1>
+        <button id="playButton" type="button">Jogar</button>
+        <button id="creditsButton" type="button">Créditos</button>
+      </div>
+
+      <form id="playerNameForm" class="player-name-form" hidden>
+        <p class="menu-kicker">NOVO JOGO</p>
+        <h2>Quem está jogando?</h2>
+        <label for="playerName">Nome do jogador</label>
+        <input id="playerName" name="playerName" type="text" maxlength="24" autocomplete="off" required>
+        <p id="playerNameError" class="form-error" role="alert" hidden></p>
+        <div class="menu-actions">
+          <button type="submit">Começar</button>
+          <button id="cancelNameForm" type="button">Voltar</button>
+        </div>
+      </form>
+  </div>
+</div>
+
+<!-- JOGO -->
+ <div id = "gameContainer">
+<canvas id="gameCanvas"></canvas>
+</div>
+<!-- Caixa de Diálogo existente -->
+<div id="dialogueBox" style="display: none;">
+  <p id="dialogueText"></p>
+</div>
+
+<!-- Nova Caixa de Desafio -->
+<div id="challengeBox" style="
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid #4CAF50;
+  border-radius: 15px;
+  padding: 25px;
+  color: white;
+  font-family: Arial;
+  z-index: 1000;
+  text-align: center;
+  min-width: 400px;
+">
+  <h2 id="challengeTitle" style="color: #4CAF50; margin: 0 0 15px 0;">Desafio</h2>
+  <p id="challengeText" style="margin: 0 0 20px 0; line-height: 1.5;"></p>
+  <div style="display: flex; justify-content: center; gap: 20px;">
+    <button onclick="acceptChallenge()" style="
+      padding: 10px 30px;
+      background: #4CAF50;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    ">Aceitar</button>
+    <button onclick="refuseChallenge()" style="
+      padding: 10px 30px;
+      background: #f44336;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    ">Recusar</button>
+  </div>
+</div>
+
+<div id="temporaryMessage" style="
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-family: Arial;
+  z-index: 1001;
+  transition: opacity 0.5s;
+"></div>
+
+<div id="minigameUI" style="
+  display: none;
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1002;
+">
+  <canvas id="minigameCanvas" width="300" height="300"></canvas>
+  <div id="skillCheckFeedback" style="
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s;
+  "></div>
+</div>
+
+
+<!-- Scripts clássicos compartilham o estado; mantenha esta ordem. -->
+<script src="scripts/state.js"></script>
+<script src="scripts/scenes.js"></script>
+<script src="scripts/puzzle-pink.js"></script>
+<script src="scripts/puzzle-orange.js"></script>
+<script src="scripts/generators.js"></script>
+<script src="scripts/controls.js"></script>
+<script src="scripts/player.js"></script>
+<script src="scripts/doors.js"></script>
+<script src="scripts/ui.js"></script>
+<script src="scripts/renderer.js"></script>
+<script src="scripts/menu.js"></script>
+<script src="scripts/game.js"></script>
+</body>
+</html>
